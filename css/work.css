@@ -1,0 +1,70 @@
+.container-middle{
+    position:absolute;
+    top:6%;
+    padding-top:0;
+}
+
+#nav-work ul{
+    position: fixed;
+    top:12%;
+    left:3.5%;
+    padding-inline-start: 0;
+    margin:0 auto;
+    text-align:center;
+}
+
+#nav-work ul li{
+    padding:1rem 0;
+    margin:0.2rem 0;
+    font-size:1.5rem;
+}
+
+div#col-gallery-work{
+    padding:0;
+}
+
+.grid{
+    padding:0;
+    margin: 0;
+}
+
+.grid-item{
+    width:calc(100%/3);
+}
+
+.grid-item.is-loading{
+    opacity:0;
+}
+
+.grid img{
+    width:100%;
+    height: auto;
+}
+
+@media screen and (max-width:768px){
+    /* for md */
+    .container-middle{
+    position:absolute;
+    top:6%;
+    }
+
+    #nav-work ul{
+        /* fixedを直すためstatic*/
+    position: static;
+    display:flex;
+    justify-content: space-around;
+    }
+
+    #nav-work ul li{
+        padding: 1rem 2rem;
+    }
+}
+
+ .ui-tabs-active {
+  /* background: yellow; */
+  /* text-decoration-line: line-through; */
+  text-decoration-line: underline;
+}
+ .ui-tabs-active a {
+  text-decoration-color: rgba(254, 130, 148,0.9) !important;
+}

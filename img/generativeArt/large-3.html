@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>model of HTML for p5</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.8.0/p5.js"></script>
+  <!-- <script src="./sketch.js"></script> -->
+  <style>
+    html {
+      height: 100%;
+      background-color: #fff;
+    }
+
+    body {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    canvas {
+      border: solid #000 1px;
+    }
+  </style>
+</head>
+
+<body>
+  <script>
+    var radius = 50;
+    var formResolution = 15;
+    var angle;
+    var step = 2;
+    var mycanvas;
+    var x = [];
+    var y = [];
+    var centerX;
+    var centerY;
+    var freeze = false;
+
+    function setup() {
+      mycanvas = createCanvas(windowWidth, windowHeight);
+      background(0, 0, 21);
+      noFill();
+      noCursor();
+      stroke(10, 255, 214, 30);
+      angle = radians(360 / formResolution);
+      centerX = width / 2;
+      centerY = height / 2;
+
+      for (var i = 0; i < formResolution; i++) {
+        x.push(radius * cos(angle * i));
+        y.push(radius * sin(angle * i));
+      }
+    }
+
+    function draw() {
+      for (var i = 0; i < formResolution; i++) {
+        x[i] += random(-step, step);
+        y[i] += random(-step, step);
+      }
+      beginShape();
+      curveVertex(x[formResolution - 1] + centerX, y[formResolution - 1] + centerY);
+      for (var i = 0; i < formResolution; i++) {
+        curveVertex(x[i] + centerX, y[i] + centerY);
+      }
+      curveVertex(x[0] + centerX, y[0] + centerY);
+      curveVertex(x[1] + centerX, y[1] + centerY);
+      endShape();
+    }
+
+    function keyReleased() {
+      if (key == 's' || key == 'S') saveCanvas(mycanvas, "screenshot" + random(99999), 'png');
+      // pauze/play draw loop
+      if (key == 'f' || key == 'F') freeze = !freeze;
+      if (freeze) {
+        noLoop();
+      } else {
+        loop();
+      }
+    }
+
+    function mouseClicked() {
+      for (var i = 0; i < formResolution; i++) {
+        x[i] *= 1.01;
+        y[i] *= 1.01;
+      }
+    }
+  </script>
+</body>
+
+</html>
